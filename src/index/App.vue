@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import $ from 'jquery'
 	export default {
 		data(){
 			return {
@@ -18,6 +19,14 @@
 		},
 		methods:{
 			handleClick(){
+                $.ajax({
+                    url:'/getList',
+                    method:'get',
+                    dataType:'json',
+                    success(res){
+                        console.log(res)
+                    }
+                })
 				this.hello = 'haha'
 			}
 		}
