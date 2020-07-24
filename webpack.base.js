@@ -80,6 +80,9 @@ module.exports = {
 			}
 		}
 	},
+    externals: {
+        'jquery': '$'
+    },
 	plugins: [
 		new VueLoaderPlugin(),
 		...initTemplate(getEntrys('./src/entrys'))
