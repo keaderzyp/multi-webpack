@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const {
 	CleanWebpackPlugin
 } = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack')
 const fs = require('fs')
 const { merge } = require('webpack-merge');
@@ -62,6 +63,20 @@ module.exports = merge(config,{
 		alias: {
 			'vue$':'vue/dist/vue.min.js'
 		}
+	},
+	optimization:{
+		minimize:true,
+		minimizer:[
+			new TerserPlugin({
+        terserOptions:{
+          compress: {
+          	drop_console: true,//console
+          	drop_debugger: false,
+          	pure_funcs: ['console.log']//移除console
+          }
+        }
+			})
+		]
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
